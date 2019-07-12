@@ -81,12 +81,14 @@ def get_stock_info(lst, stock_url, fpath):
             with open(fpath, 'a', encoding='utf-8') as f:
                 f.write(str(info_dict)+'\n')
                 count = count + 1
-                print('\r当前进度：{:.2f}%'.format(count*100/len(lst)), end='')
+                print('\r当前进度：{:.2f}%'.format(count*100/len(lst)), '[', '*'*int(count*50/len(lst)),
+                      '-'*int(50 - count*50/len(lst)), ']', end='')
 
         except:
             # 一两只股票的失败不影响大局。
             count = count + 1
-            print('\r当前进度：{:.2f}%'.format(count * 100 / len(lst)), end='')
+            print('\r当前进度：{:.2f}%'.format(count * 100 / len(lst)), '[', '*' * int(count * 50 / len(lst)),
+                  '-' * int(50 - count * 50 / len(lst)), ']', end='')
             # traceback.print_exc()  本函数可以配合try except来补捉bug
             continue
 
